@@ -30,5 +30,6 @@ def ocr():
 
     return jsonify({"text": text})
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8080)
+# 🔥 IMPORTANTE: eliminar esta línea en producción
+# if __name__ == '__main__':
+#     app.run(host='0.0.0.0', port=8080)
