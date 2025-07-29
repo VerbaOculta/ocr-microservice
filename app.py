@@ -8,10 +8,9 @@ import io
 app = Flask(__name__)
 
 def preprocess_image(image_bytes):
-    image = Image.open(io.BytesIO(image_bytes)).convert('L')  # escala de grises
+    image = Image.open(io.BytesIO(image_bytes)).convert('L')
     image_np = np.array(image)
 
-    # Filtro Gaussiano + umbral adaptativo
     blurred = cv2.GaussianBlur(image_np, (5, 5), 0)
     thresh = cv2.adaptiveThreshold(blurred, 255,
                                    cv2.ADAPTIVE_THRESH_MEAN_C,
