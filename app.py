@@ -10,7 +10,6 @@ app = Flask(__name__)
 def preprocess_image(image_bytes):
     image = Image.open(io.BytesIO(image_bytes)).convert('L')
     image_np = np.array(image)
-
     blurred = cv2.GaussianBlur(image_np, (5, 5), 0)
     thresh = cv2.adaptiveThreshold(blurred, 255,
                                    cv2.ADAPTIVE_THRESH_MEAN_C,
@@ -24,12 +23,7 @@ def ocr():
 
     file = request.files['file']
     image_bytes = file.read()
-
     processed_image = preprocess_image(image_bytes)
     text = pytesseract.image_to_string(processed_image)
 
     return jsonify({"text": text})
-
-# 🔥 IMPORTANTE: eliminar esta línea en producción
-# if __name__ == '__main__':
-#     app.run(host='0.0.0.0', port=8080)
