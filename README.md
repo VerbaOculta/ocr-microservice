@@ -1,11 +1,11 @@
 # OCR Microservice
 
-Un microservicio OCR básico que recibe una imagen y devuelve el texto extraído usando Tesseract y OpenCV.
+Un microservicio OCR construido con Flask, OpenCV y Tesseract.
 
 ## Cómo usar
 
-### Ejecutar localmente
+### Docker
 
 ```bash
-pip install -r requirements.txt
-python app.py
+docker build -t ocr-service .
+docker run -p 8080:8080 ocr-service
